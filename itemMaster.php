@@ -55,6 +55,8 @@
                 <th>PN</th>
                 <th>Callout</th>
                 <th>Price</th>
+                <th>Labor Rate</th>
+
             </tr>
         </thead>
         <tbody>
