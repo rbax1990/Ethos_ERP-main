@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Ethos Mechanical ERP</title>
+    <link rel="stylesheet" href="../public/css/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        .register-form {
+            width: 300px;
+        }
+        .register-form label,
+        .register-form input,
+        .register-form button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .register-form button {
+            width: auto;
+            padding: 10px 20px;
+            margin-right: 10px;
+        }
+        .show-password-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .register-form input[type="checkbox"] {
+            display: inline-block;
+            width: auto;
+            margin-left: 5px;
+        }
+        .register-form button {
+            display: inline-block;
+            background-color: #b90f16; /* Red color */
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .register-form button:hover {
+            background-color: #a00f15; /* Slightly darker red for hover effect */
+        }
+    </style>
+</head>
+<body>
+    <img src="../public/images/Ethos_Mech_Logo_Small.png" alt="Ethos Mech Logo" class="logo">
+    
+    <h2>Ethos Mechanical ERP<br>Please Register Your Account Below</h2>
+
+    <form class="register-form" onsubmit="event.preventDefault(); registerUser();">
+        <label for="first-name">First Name:</label>
+        <input type="text" id="first-name" required>
+
+        <label for="last-name">Last Name:</label>
+        <input type="text" id="last-name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+
+        <label for="create-password">Create Password:</label>
+        <input type="password" id="create-password" required>
+        <div class="show-password-container">
+            <label for="show-create-password">Show Password</label>
+            <input type="checkbox" id="show-create-password">
+        </div>
+
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" required>
+        <div class="show-password-container">
+            <label for="show-confirm-password">Show Password</label>
+            <input type="checkbox" id="show-confirm-password">
+        </div>
+
+        <div>
+            <button type="submit">Register</button>
+            <button type="button" onclick="location.href='index.html'">Cancel</button>
+        </div>
+    </form>
+
+    <script>
+        function registerUser() {
+        document.getElementById('show-create-password').addEventListener('click', function(e) {
+            var passwordInput = document.getElementById('create-password');
+            if (this.checked) {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
+        });
+        document.getElementById('show-confirm-password').addEventListener('click', function(e) {
+            var confirmPasswordInput = document.getElementById('confirm-password');
+            if (this.checked) {
+                confirmPasswordInput.type = 'text';
+            } else {
+                confirmPasswordInput.type = 'password';
+            }
+        });
+        window.location.href = 'login.html';
+    }
+    </script>
+</body>
+</html>

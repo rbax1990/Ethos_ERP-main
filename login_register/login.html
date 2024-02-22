@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Ethos Mechanical ERP</title>
+    <link rel="stylesheet" href="../public/css/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        .login-form {
+            width: 300px;
+        }
+        .login-form label,
+        .login-form input,
+        .login-form button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .login-form button {
+            width: auto;
+            padding: 10px 20px;
+            margin-right: 10px;
+        }
+        .show-password-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .login-form input[type="checkbox"] {
+            display: inline-block;
+            width: auto;
+            margin-left: 5px;
+        }
+        .login-form button {
+            display: inline-block;
+            background-color: #b90f16; /* Red color */
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .login-form button:hover {
+            background-color: #a00f15; /* Slightly darker red for hover effect */
+        }
+    </style>
+</head>
+<body>
+    <img src="../public/images/Ethos_Mech_Logo.png" alt="Ethos Mech Logo" class="logo">
+    
+    <h2>Ethos Mechanical ERP<br>Please Login Below</h2>
+
+    <form class="login-form">
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+
+        <div class="show-password-container">
+            <label for="show-password">Show Password</label>
+            <input type="checkbox" id="show-password">
+        </div>
+
+        <div>
+            <button type="submit">Login</button>
+            <button type="button" onclick="location.href='index.html'">Cancel</button>
+        </div>
+    </form>
+
+    <script>
+        document.getElementById('show-password').addEventListener('click', function(e) {
+            var passwordInput = document.getElementById('password');
+            if (this.checked) {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
+        });
+    </script>
+</body>
+</html>
