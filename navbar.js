@@ -1,70 +1,69 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const navbarContainer = document.getElementById('navbar'); // Make sure this ID matches the placeholder in your HTML
+  const navbarContainer = document.getElementById('navbar');
   navbarContainer.innerHTML = `
     <div class="navbar">
       <div class="navbar-info"></div>
       <div class="navbar-info"></div>
-      <a class="button-btn" href="index.html">Dashboard</a>
+      <a class="button-btn" href="/Ethos_ERP-main/index.php">Dashboard</a>
       
       <div class="dropdown">
         <button class="dropdown-btn">Project Mgmt</button>
         <div class="dropdown-content">
-          <a href="scopeCtrl.html">Scope Control</a>
+          <a href="/Ethos_ERP-main/project_mgmt/scopeControl.php">Scope Control</a>
         </div>
       </div>
   
       <div class="dropdown">
         <button class="dropdown-btn">Purchasing</button>
         <div class="dropdown-content">
-          <a href="reqs.html">Requisitions</a>       
-          <a href="pos.html">Purchase Orders</a>
-          <a href="itemMaster.html">Item Master</a>
-          <a href="rentals.html">Rentals</a>
-          <a href="kits.html">Kits</a>
+          <a href="/Ethos_ERP-main/purchasing/reqs.php">requisitions</a>       
+          <a href="/Ethos_ERP-main/purchasing/purchaseOrders.php">Purchase Orders</a>
+          <a href="/Ethos_ERP-main/purchasing/itemMaster.php">Item Master</a>
+          <a href="/Ethos_ERP-main/purchasing/rentals.php">Rentals</a>
+          <a href="/Ethos_ERP-main/purchasing/kits.php">Kits</a>
         </div>
       </div>
   
       <div class="dropdown">
         <button class="dropdown-btn">Finance</button>
         <div class="dropdown-content">
-          <a href="#GeneralLedger.html">General Ledger</a>       
-          <a href="#Forecasting.html">Forecasting</a>
-          <a href="#Accounting.html">Accounting</a>
-          <a href="#Invoicing.html">Invoicing</a>
+          <a href="/Ethos_ERP-main/finance/GeneralLedger.php">General Ledger</a>       
+          <a href="/Ethos_ERP-main/finance/Forecasting.php">Forecasting</a>
+          <a href="/Ethos_ERP-main/finance/Accounting.php">Accounting</a>
+          <a href="/Ethos_ERP-main/finance/Invoicing.php">Invoicing</a>
         </div>
       </div>
 
       <div class="dropdown">
-      <button class="dropdown-btn">Fabrication</button>
-      <div class="dropdown-content">
-        <a href="#WorkPackages.html">Work Packages</a>   
-        <a href="#Quality.html">Quality Control</a>
-        <a href="#Inventory.html">Inventory Mgmt</a>
-        <a href="#Production.html">Production Tracking</a>
-        <a href="boms.html">BOM's</a>
- 
+        <button class="dropdown-btn">Fabrication</button>
+        <div class="dropdown-content">
+          <a href="/Ethos_ERP-main/fabrication/WorkPackages.php">Work Packages</a>   
+          <a href="/Ethos_ERP-main/fabrication/Quality.php">Quality Control</a>
+          <a href="/Ethos_ERP-main/fabrication/Inventory.php">Inventory Mgmt</a>
+          <a href="/Ethos_ERP-main/fabrication/Production.php">Production Tracking</a>
+          <a href="/Ethos_ERP-main/fabrication/boms.php">BOM's</a>
+        </div>
       </div>
-    </div>
     
       <div class="dropdown">
         <button class="dropdown-btn">HR</button>
         <div class="dropdown-content">
-          <a href="#employee-setup.html">Employee Setup</a>       
+          <a href="/Ethos_ERP-main/hr/employee-setup.php">Employee Setup</a>       
         </div>
       </div>
   
       <div class="dropdown">
         <button class="dropdown-btn">Admin</button>
         <div class="dropdown-content">
-          <a href="#profiles.html">Profiles</a>
-          <a href="#preferences.html">Preferences</a>      
+          <a href="/Ethos_ERP-main/admin/profiles.php">Profiles</a>
+          <a href="/Ethos_ERP-main/admin/preferences.php">Preferences</a>      
         </div>
       </div>
   
       <div class="dropdown">
         <button class="dropdown-btn">Help</button>
         <div class="dropdown-content">
-          <a href="#Help">Help</a>       
+          <a href="/Ethos_ERP-main/help/Help.php">Help</a>       
         </div>
       </div>
     </div>
