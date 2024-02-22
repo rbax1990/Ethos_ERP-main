@@ -1,0 +1,219 @@
+
+        /* ALL PAGES */
+body {
+      font-family: 'Times New Roman', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: rgb(243, 240, 240);
+    }
+/* This will style all buttons */
+button {
+  background-color: #b90f16; /* Red color */
+  color: white; /* Text color */
+  border: none; /* Remove default border */
+  padding: 10px 20px; /* Add some padding */
+  text-align: center; /* Center the text */
+  text-decoration: none; /* Remove underline from text */
+  display: inline-block; /* Allow multiple buttons in a line */
+  font-size: 16px; /* Increase font size */
+  margin: 4px 2px; /* Add margin between buttons */
+  cursor: pointer; /* Change mouse cursor on hover */
+  border-radius: 5px; /* Optional: Add rounded corners to buttons */
+}
+
+/* Add a hover effect for the buttons */
+button:hover {
+  background-color: #a00f15; /* A slightly darker red for hover effect */
+}
+    h1 {
+      font-family: 'Times New Roman', Times, serif;
+      text-align: left;
+    }
+    .navbar {
+      background-color: white;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      color: white;
+    }
+    .navbar a, .dropdown-btn {
+      display: inline-block;
+      color: rgb(10, 10, 10);
+      background-color: white;
+      text-align: center;
+      padding: 6px 16px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .navbar a:hover, .dropdown-btn:hover {
+      background-color: rgb(196, 194, 194);
+      color: none;
+    }
+    .navbar-right {
+      margin-left: auto;
+    }
+    .navbar-right input {
+      padding: 7px;
+      margin: 8px 0;
+    }
+    .navbar-info {
+      font-size: 0.8em;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    .dropdown-content a {
+      background-color: white(247, 242, 242);
+      padding: 3px 8px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+.scrollable-table {
+    overflow: auto;
+    max-height: 300px;
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}     
+
+.selected-row {
+  background-color: #e8e8e8; /* Subtle highlight color */
+}
+
+    /* PROJECTS PAGE */
+
+    /*PURCHSING PAGE */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select {
+    width: 20%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+}
+
+h1, h2, h3 {
+  color: #333;
+  box-shadow: 0px 2px 5px rgb(255, 0, 0); /* Red shadow */
+  border: 1px solid #000; /* Black border */
+}
+
+form {
+  margin-bottom: 0px;
+}
+
+label {
+  display: block;
+  margin-bottom: 0px;
+}
+
+input {
+  width: 10%;
+  padding: 0px;
+  margin-bottom: 0px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  padding: 1px;
+  border: 1px solid #ddd;
+}
+
+    /*ITEM MASTER*/
+.container {
+  display: flex;
+}
+
+.selection-tree {
+  width: 200px;
+  border-right: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+
+  
+  padding: 30px;
+}
+
+.table-container {
+  flex-grow: 1;
+  padding: 20px;
+}
+.custom-context-menu {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  width: 180px; /* Wider width */
+  background: white;
+  border: 1px solid #ddd; /* Lighter border */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Stronger shadow for pop effect */
+  border-radius: 4px; /* Rounded corners */
+}
+
+.custom-context-menu {
+  background-color: #f7f7f7; /* Slightly darker header background */
+  border-bottom: 1px solid #ddd;
+  padding: 12px;
+  font-weight: bold;
+  cursor: move;
+}
+
+.custom-context-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.custom-context-menu ul li {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.custom-context-menu ul li:hover {
+  background-color: #f0f0f0; /* Light hover effect */
+}

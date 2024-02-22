@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Ethos Mechanical ERP</title>
+    <link rel="stylesheet" href="../public/css/style.css">
+    <style>
+        body {
+            text-align: center;
+        }
+        .login-container {
+            margin: 0 auto;
+            width: 300px;
+            padding-top: 50px;
+        }
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        .login-form input[type="email"],
+        .login-form input[type="password"] {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .login-form label {
+            margin-right: 10px;
+        }
+        .login-form button {
+            width: 100px;
+            margin-right: 5px;
+        }
+        .show-password-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        .show-password-checkbox {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <img src="../public/images/Ethos_Mech_Logo.png" alt="Ethos Mech Logo" class="logo">
+    
+    <div class="login-container">
+        <form class="login-form">
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+                <div class="show-password-container">
+                    <input type="checkbox" id="show-password" class="show-password-checkbox">
+                    <label for="show-password">Show Password</label>
+                </div>
+            </div>
+            <div>
+                <button type="submit">Login</button>
+                <button type="button" onclick="location.href='index.html'">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('show-password').addEventListener('click', function(e) {
+            var passwordInput = document.getElementById('password');
+            if (this.checked) {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
+        });
+    </script>
+</body>
+</html>
+
