@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   navbarContainer.innerHTML = `
     <div class="navbar">
       <div class="navbar-info"></div>
-
+// Test line added. Remove later. 
       <div class="navbar-info"></div>
       <a class="button-btn" href="index.html">Dashboard</a>
       
