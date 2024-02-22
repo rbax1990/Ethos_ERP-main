@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ethos Mechanical Item Master</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../public/css/style.css">
 </head>
 <body>
 
+
 <div id="navbar"></div> <!-- This ID matches the one used in navbar.js -->
-<script src="navbar.js"></script>
+<script src="../navbar.js"></script>
 
 <!--CONTEXT MENU - itemMaster-->
 <div id="itemMasterMenu" class="custom-context-menu" style="display: none;">
@@ -61,7 +62,7 @@
         </thead>
         <tbody>
         <?php
-                include 'db_connect.php';  // Include your database connection
+                include '../src/config/db_connect.php';  // Include your database connection
 
                 // SQL query to fetch the item data
                 $sql = "SELECT * FROM itemMaster";
