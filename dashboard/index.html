@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERP Dashboard</title>
+    <link rel="stylesheet" href="../public/css/style.css">
+</head>
+<style>
+    /* Add your CSS styles here */
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .logo-container {
+        text-align: center; /* Center the logo */
+        margin: 20px 0; /* Add some margin above and below the logo */
+    }
+    .dashboard-container {
+        display: flex;
+        margin: 20px;
+    }
+    .blog-posts, .employee-recognition {
+            border: 1px solid #000; /* Add border around the sections */
+            height: 500px; /* Fixed height for demo purposes */
+            padding: 20px; /* Add some padding inside the containers */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+        .blog-posts {
+            flex-grow: 2; /* Blog posts section takes more space */
+            margin-right: 20px; /* Add margin between blog posts and recognition section */
+        }
+        .employee-recognition {
+            flex-grow: 1; /* Employee recognition section takes less space */
+        }
+        .section-title {
+            font-size: 24px; /* Larger text for section titles */
+            margin-bottom: 10px; /* Margin below the title */
+            border-bottom: 2px solid #000; /* Line under the title */
+        }
+    .section-title {
+        font-size: 24px; /* Larger text for section titles */
+        margin-bottom: 10px; /* Margin below the title */
+        border-bottom: 2px solid #000; /* Line under the title */
+    }
+</style>
+<body>
+    
+<div id="navbar"></div> <!-- This ID matches the one used in navbar.js -->
+<script src="../navbar.js"></script>
+
+    <!-- Company Logo -->
+    <div class="company-logo">
+        <img src="/Ethos_ERP-main/public/images/Ethos_Mech_Logo_Small.png" alt="Ethos Mechanical Logo">
+    </div>
+    
+
+    <div class="dashboard-container">
+        <div class="blog-posts">
+            <div class="section-title">Ethos Mechanical Newsletter</div>
+            <!-- Blog post content goes here -->
+        </div>
+        <div class="employee-recognition">
+            <div class="section-title">Employee Recognition</div>
+            <!-- Employee recognition content goes here -->
+        </div>
+    </div>
+
+    <script src="navbar.js"></script> <!-- Link to your navbar JavaScript -->
+    <script src="dashboard.js"></script> <!-- Dashboard specific JavaScript -->
+</body>
+</html>

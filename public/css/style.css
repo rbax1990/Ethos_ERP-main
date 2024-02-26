@@ -218,3 +218,23 @@ th, td {
 .custom-context-menu ul li:hover {
   background-color: #f0f0f0; /* Light hover effect */
 }
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  margin: 20px;
+}
+
+.main-content {
+  flex: 3; /* Takes up 3/4 of the container width */
+  margin-right: 20px;
+}
+
+.sidebar {
+  flex: 1; /* Takes up 1/4 of the container width */
+}
