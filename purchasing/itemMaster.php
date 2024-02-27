@@ -73,9 +73,9 @@
                     echo "<td>". htmlspecialchars($row['unit_id']) . "</td>";
                     echo "<td>". htmlspecialchars($row['material_spec']) . "</td>";
                     echo "<td>". htmlspecialchars($row["brand"]) . "</td>"; 
-                    echo "<td>". htmlspecialchars($row["size"]) . "</td>";
-                    echo "<td>". htmlspecialchars($row["size2"]) . "</td>";
-                    echo "<td>". htmlspecialchars($row["size3"]) . "</td>";
+                    echo "<td>". htmlspecialchars($row["size_1"]) . "</td>";
+                    echo "<td>". htmlspecialchars($row["size_2"]) . "</td>";
+                    echo "<td>". htmlspecialchars($row["size_3"]) . "</td>";
                     echo "<td>". htmlspecialchars($row["description"]) . "</td>";
                     echo "<td>". htmlspecialchars($row["details"]) . "</td>";
                     echo "<td>". htmlspecialchars($row["pn"]) . "</td>";

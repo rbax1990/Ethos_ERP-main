@@ -1,9 +1,9 @@
 <?php
 $host = '127.0.0.1';  // Your MySQL host, 127.0.0.1 is the localhost
-$port = '3307';       // Your MySQL port, 3307 as per your configuration
-$db   = 'ethos_data'; // Your database name
+$port = '3306';       // Your MySQL port, 3307 as per your configuration
+$db   = 'ethos_database'; // Your database name
 $user = 'root';      // Your database username
-$pass = 'Eth!2020';      // Your database password
+$pass = '';      // Your database password
 $charset = 'utf8mb4';         // Set the charset
 
 $options = [
