@@ -57,37 +57,32 @@
         .register-form button:hover {
             background-color: #a00f15; /* Slightly darker red for hover effect */
         }
+        .password-requirements {
+        font-size: 0.5rem;
+        color: #747474;
+        margin: 5px 0 15px 0; /* Adjust spacing as needed */
+    }
     </style>
 </head>
 <body>
     <img src="../public/images/Ethos_Mech_Logo_Small.png" alt="Ethos Mech Logo" class="logo">
-    
     <h2>Ethos Mechanical ERP<br>Please Register Your Account Below</h2>
 
-    <form class="register-form" onsubmit="event.preventDefault(); registerUser();">
-        <label for="first-name">First Name:</label>
-        <input type="text" id="first-name" required>
-
-        <label for="last-name">Last Name:</label>
-        <input type="text" id="last-name" required>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" required>
-
-        <label for="create-password">Create Password:</label>
-        <input type="password" id="create-password" required>
+    <form id="register-form" class="register-form" onsubmit="event.preventDefault(); registerUser();">
+        <input type="text" id="first-name" placeholder="First Name" required>
+        <input type="text" id="last-name" placeholder="Last Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="create-password" placeholder="Create Password" required>
+        <p class="password-requirements">Password: 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.</p>
         <div class="show-password-container">
-            <label for="show-create-password">Show Password</label>
             <input type="checkbox" id="show-create-password">
+            <label for="show-create-password">Show Password</label>
         </div>
-
-        <label for="confirm-password">Confirm Password:</label>
-        <input type="password" id="confirm-password" required>
+        <input type="password" id="confirm-password" placeholder="Confirm Password" required>
         <div class="show-password-container">
-            <label for="show-confirm-password">Show Password</label>
             <input type="checkbox" id="show-confirm-password">
+            <label for="show-confirm-password">Show Password</label>
         </div>
-
         <div>
             <button type="submit">Register</button>
             <button type="button" onclick="location.href='index.html'">Cancel</button>
@@ -95,25 +90,40 @@
     </form>
 
     <script>
+        function togglePassword(inputId, checkboxId) {
+            var passwordInput = document.getElementById(inputId);
+            var passwordCheckbox = document.getElementById(checkboxId);
+            passwordInput.type = passwordCheckbox.checked ? 'text' : 'password';
+        }
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('show-create-password').addEventListener('change', function() {
+                togglePassword('create-password', 'show-create-password');
+            });
+    
+            document.getElementById('show-confirm-password').addEventListener('change', function() {
+                togglePassword('confirm-password', 'show-confirm-password');
+            });
+        });
+    
         function registerUser() {
-        document.getElementById('show-create-password').addEventListener('click', function(e) {
             var passwordInput = document.getElementById('create-password');
-            if (this.checked) {
-                passwordInput.type = 'text';
-            } else {
-                passwordInput.type = 'password';
-            }
-        });
-        document.getElementById('show-confirm-password').addEventListener('click', function(e) {
             var confirmPasswordInput = document.getElementById('confirm-password');
-            if (this.checked) {
-                confirmPasswordInput.type = 'text';
-            } else {
-                confirmPasswordInput.type = 'password';
+            var password = passwordInput.value;
+            var confirmPassword = confirmPasswordInput.value;
+    
+            if (password.length < 8 || !(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/).test(password)) {
+                alert("Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.");
+                return;
             }
-        });
-        window.location.href = 'login.html';
-    }
+    
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return;
+            }
+    
+            window.location.href = 'login.html';
+        }
     </script>
 </body>
 </html>
