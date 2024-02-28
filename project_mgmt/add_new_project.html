@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Input Form</title>
+    <link rel="stylesheet" href="../public/css/style.css"> <!-- Adjust the path as needed -->
+</head>
+<body>
+
+<div id="navbar"></div> <!-- Navbar placeholder -->
+<script src="../navbar.js"></script> <!-- Adjust the path as needed -->
+
+<div class="project-input-form">
+    <h1>New Project Input</h1>
+    <form id="newProjectForm">
+        <div class="form-group">
+            <label for="ProjectName">Project Name:</label>
+            <input type="text" id="ProjectName" name="ProjectName">
+        </div>
+        
+        <div class="form-group">
+            <label for="ClientName">Client Name:</label>
+            <input type="text" id="ClientID" name="ClientID">
+        </div>
+        
+        <div class="form-group">
+            <label for="ProjectManager">Project Manager:</label>
+            <input type="text" id="ProjectManager" name="ProjectManager">
+        </div>
+
+        <div class="form-group">
+            <label for="ForecastedBudget">Forecasted Budget:</label>
+            <input type="number" id="Budget" name="Budget" step="0.01">
+        </div>
+
+        <div class="form-group">
+            <label for="StartDate">Start Date:</label>
+            <input type="date" id="StartDate" name="StartDate">
+        </div>
+        
+        <div class="form-group">
+            <label for="EndDate">End Date:</label>
+            <input type="date" id="EndDate" name="EndDate">
+        </div>
+
+        <button type="submit">Submit Project</button>
+    </form>
+</div>
+
+<script>
+document.getElementById('newProjectForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+    
+    // Here, you can add any validation or form processing logic
+
+    // Redirect to scopeControl.html
+    window.location.href = 'scopeControl.html';
+});
+</script>
+
+<script src="app.js"></script> <!-- Your JavaScript file for handling the form -->
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+    "name": "ethos_erp",
+    "version": "1.0.0",
+    "description": "ERP system for internal company use",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js",
+        "dev": "fiveserver start"
+    },
+    "author": "Ryan Baxley & Alexander Maxwell",
+    "license": "ISC",
+    "dependencies": {
+    }
+}

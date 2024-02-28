@@ -8,11 +8,11 @@
 </head>
 <body>
 
-
 <div id="navbar"></div> <!-- This ID matches the one used in navbar.js -->
 <script src="../navbar.js"></script>
 
-<h1>Scope Control</h1>
+<div class="content">
+    <h1>Scope Control Dashboard</h1>
 
 <form id="scopeCtrlFilter">
 <div class="form-group">
@@ -37,8 +37,6 @@
 <button class="custom-button">Update Forecast</button>
 
 <!-- NEEDS PERMISSIONS-->
-<!-- HIDDEN CONTEXT MENU FOR NEW PROJECT ENTRY -->
-<button class="custom-button">New Project Entry</button>
 
 <div id="newProjectMenu" class="custom-context-menu" style="display: none;">
     <form id="newProjectForm">
@@ -65,14 +63,20 @@
                 <!-- Options populated from the database as shown before -->
             </select>
         </div>
-        <div class="form-buttons">
-            <button type="button" onclick="hideNewProjectMenu()">Cancel</button>
-            <button type="submit">Commit</button>
-        </div>
     </form>
+</div>
+<button id="newProjectEntryBtn">New Project Entry</button>
 </div>
 
 <script>
+document.getElementById('newProjectEntryBtn').addEventListener('click', function() {
+    window.location.href = 'add_new_project.html'; // Ensure this path is correct
+});
+    // Script to handle the redirection to add_new_project.html
+    document.getElementById('newProjectEntryBtn').addEventListener('click', function() {
+        window.location.href = 'add_new_project.html'; // Update this path if your file structure requires it
+    });
+
 // Function to show the new project entry context menu
 function showNewProjectMenu() {
     var menu = document.getElementById("newProjectMenu");
