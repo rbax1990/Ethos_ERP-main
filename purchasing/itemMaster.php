@@ -33,6 +33,28 @@
     </ul>
 </div>
 
+<!--CREATE PO BUTTON-->
+<div class="create-po-container">
+    <button id="createPoButton">Create Purchase Order</button>
+</div>
+
+<!-- CREATE PO CONTEXT MENU -->
+<div id="createPoContextMenu" class="custom-context-menu" style="display: none;">
+    <form id="poDetailsForm">
+        <div>
+            <label for="supplierNameContextMenu">Supplier Name:</label>
+            <input type="text" id="supplierNameContextMenu" name="supplierName"><br>
+        </div>
+        <div>
+            <label for="poDateContextMenu">PO Date:</label>
+            <input type="date" id="poDateContextMenu" name="poDate"><br>
+        </div>
+        <div>
+            <input type="button" value="Submit" onclick="createPurchaseOrder()">
+        </div>
+    </form>
+</div>
+
 <!--NEED TO UPDATE THIS FOR SELECTION TREE-->
 <div class="container">
     <div class="selection-tree" id="selectionTree">
@@ -69,7 +91,8 @@
                 $stmt = $pdo->query($sql);
 
                 while ($row = $stmt->fetch()) {
-                    echo "<tr>";
+                    // DOUBLE CHECK THIS FIRST LINE. WAS <TR>
+                    echo "<tr ondblclick='addItemToSelected(this)'>";
                     echo "<td>". htmlspecialchars($row['unit_id']) . "</td>";
                     echo "<td>". htmlspecialchars($row['material_spec']) . "</td>";
                     echo "<td>". htmlspecialchars($row["brand"]) . "</td>"; 
@@ -98,7 +121,6 @@
     <table id="selectedItemsTable" border="1">
         <thead>
             <tr>
-                <th>Sort</th>
                 <th>Unit ID</th>
                 <th>Material Spec</th>
                 <th>Brand</th>
@@ -115,115 +137,10 @@
         </thead>
         <tbody>
 
-        <script src="dynamic-table-handler.js"></script>
+        <script src="../public/js/tableInteractions.js"></script>
+        <script src="../public/js/contextMenu.js"></script>
         
-        <script>
-    // Function to display context menu for selected items table
-    document.getElementById("selectedItemsTable").addEventListener("contextmenu", function(event) {
-        event.preventDefault(); // Prevent default right-click behavior
 
-        // Show the context menu at the mouse position
-        var menu = document.getElementById("selectedItemsMenu");
-        menu.style.display = "block";
-        menu.style.left = event.pageX + "px";
-        menu.style.top = event.pageY + "px";
-    });
-
-    // Function to hide context menu when clicking outside
-    document.addEventListener("click", function(event) {
-        var menu = document.getElementById("selectedItemsMenu");
-        if (event.target != menu && !menu.contains(event.target)) {
-            menu.style.display = "none";
-        }
-    });    
-</script>
-
-<script>
-    // Function to display context menu for item master table
-    document.getElementById("itemMasterTable").addEventListener("contextmenu", function(event) {
-        event.preventDefault(); // Prevent default right-click behavior
-
-        // Show the context menu at the mouse position
-        var menu = document.getElementById("itemMasterMenu");
-        menu.style.display = "block";
-        menu.style.left = event.pageX + "px";
-        menu.style.top = event.pageY + "px";
-    });
-
-    // Function to hide context menu when clicking outside
-    document.addEventListener("click", function(event) {
-        var menu = document.getElementById("itemMasterMenu");
-        if (event.target != menu && !menu.contains(event.target)) {
-            menu.style.display = "none";
-        }
-    });
-
-   // Function to add a line item to the database
-   function addLine() {
-        // Retrieve data for the new line item (you can fetch this from form inputs, etc.)
-        var unitId = 'NEW_UNIT_ID';
-        var materialSpec = 'NEW_MATERIAL_SPEC';
-        // Add other properties as needed
-
-        // Prepare data to send to the server
-        var formData = new FormData();
-        formData.append('unitId', unitId);
-        formData.append('materialSpec', materialSpec);
-        // Append other form data properties as needed
-
-        // Send the data to the server using AJAX
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'add_line_item.php', true);
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                // Request was successful
-                console.log('Item added successfully:', xhr.responseText);
-                // Optionally, update the UI or perform other actions after adding the item to the database
-            } else {
-                // Request failed
-                console.error('Error adding item:', xhr.statusText);
-                // Handle errors if any
-            }
-        };
-        xhr.onerror = function() {
-            // Request error
-            console.error('Error adding item:', xhr.statusText);
-            // Handle errors if any
-        };
-        xhr.send(formData);
-    }
-
-    // Function to simulate adding the item data to the database
-    function addToDatabase(itemData) {
-    // Make an AJAX request to the server-side script to handle database insertion
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'add_item_to_database.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/json'); // Set the content type
-
-    // Define the success and error handlers for the AJAX request
-    xhr.onload = function() {
-        if (xhr.status >= 200 && xhr.status < 300) {
-            // Request was successful
-            console.log("Item added successfully:", xhr.responseText);
-            // Optionally, update the UI or perform other actions after adding the item to the database
-        } else {
-            // Request failed
-            console.error("Error adding item to database:", xhr.statusText);
-            // Handle errors if any
-        }
-    };
-
-    xhr.onerror = function() {
-        // Request error
-        console.error("Error adding item to database:", xhr.statusText);
-        // Handle errors if any
-    };
-
-    // Convert itemData to JSON format and send it in the request body
-    var jsonData = JSON.stringify(itemData);
-    xhr.send(jsonData);
-}
-</script>
 
 
         </tbody>
