@@ -87,18 +87,13 @@
     
     <h2>Ethos Mechanical ERP<br>Please Login Below</h2>
 
-    <form class="login-form" onsubmit="handleLogin(event)">
-        <label for="email">Email:</label>
-        <input type="email" id="email" required>
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" required>
-
+    <form class="login-form" action="login_user.php" method="POST">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
         <div class="show-password-container">
             <label for="show-password">Show Password</label>
             <input type="checkbox" id="show-password">
         </div>
-
         <div>
             <button type="submit">Login</button>
             <button type="button" onclick="location.href='index.html'">Cancel</button>
