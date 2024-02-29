@@ -68,11 +68,11 @@
     <img src="../public/images/Ethos_Mech_Logo_Small.png" alt="Ethos Mech Logo" class="logo">
     <h2>Ethos Mechanical ERP<br>Please Register Your Account Below</h2>
 
-    <form id="register-form" class="register-form" onsubmit="event.preventDefault(); registerUser();">
-        <input type="text" id="first-name" placeholder="First Name" required>
-        <input type="text" id="last-name" placeholder="Last Name" required>
-        <input type="email" id="email" placeholder="Email" required>
-        <input type="password" id="create-password" placeholder="Create Password" required>
+    <form id="register-form" class="register-form" action="register_user.php" method="POST">
+        <input type="text" name="first-name" id="first-name" placeholder="First Name" required>
+        <input type="text" name="last-name" id="last-name" placeholder="Last Name" required>
+        <input type="email" name="email" id="email" placeholder="Email" required>
+        <input type="password" name="password" id="create-password" placeholder="Create Password" required>
         <p class="password-requirements">Password: 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.</p>
         <div class="show-password-container">
             <input type="checkbox" id="show-create-password">
