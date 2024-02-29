@@ -55,6 +55,28 @@
     </form>
 </div>
 
+<!--CREATE PO BUTTON-->
+<div class="create-po-container">
+    <button id="createPoButton">Create Purchase Order</button>
+</div>
+
+<!-- CREATE PO CONTEXT MENU -->
+<div id="createPoContextMenu" class="custom-context-menu" style="display: none;">
+    <form id="poDetailsForm">
+        <div>
+            <label for="supplierNameContextMenu">Supplier Name:</label>
+            <input type="text" id="supplierNameContextMenu" name="supplierName"><br>
+        </div>
+        <div>
+            <label for="poDateContextMenu">PO Date:</label>
+            <input type="date" id="poDateContextMenu" name="poDate"><br>
+        </div>
+        <div>
+            <input type="button" value="Submit" onclick="createPurchaseOrder()">
+        </div>
+    </form>
+</div>
+
 <!--NEED TO UPDATE THIS FOR SELECTION TREE-->
 <div class="container">
     <div class="selection-tree" id="selectionTree">
@@ -91,6 +113,8 @@
                 $stmt = $pdo->query($sql);
 
                 while ($row = $stmt->fetch()) {
+                    // DOUBLE CHECK THIS FIRST LINE. WAS <TR>
+                    echo "<tr ondblclick='addItemToSelected(this)'>";
                     // DOUBLE CHECK THIS FIRST LINE. WAS <TR>
                     echo "<tr ondblclick='addItemToSelected(this)'>";
                     echo "<td>". htmlspecialchars($row['unit_id']) . "</td>";
@@ -136,6 +160,15 @@
             </tr>
         </thead>
         <tbody>
+
+        <script>
+function addItemToSelected(row) {
+    var table = document.getElementById("selectedItemsTable").getElementsByTagName('tbody')[0];
+    var newRow = row.cloneNode(true);
+    newRow.removeAttribute('ondblclick'); // Remove the ondblclick attribute from the cloned row
+    table.appendChild(newRow); // Append the cloned row to the Selected Items table
+}
+</script>
 
         <script src="../public/js/tableInteractions.js"></script>
         <script src="../public/js/contextMenu.js"></script>
