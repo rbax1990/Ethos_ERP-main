@@ -1,3 +1,4 @@
+//ITEM MASTER TABLES
 document.addEventListener('DOMContentLoaded', function() {
     const itemMasterTableBody = document.getElementById('itemMasterTable').querySelector('tbody');
   

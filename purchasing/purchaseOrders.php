@@ -3,18 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ethos Mechanical PO System</title>
+    <title>Ethos Mechanical Purchase Orders</title>
     <link rel="stylesheet" href="../public/css/style.css">
-
 </head>
 <body>
 
-<div id="navbar"></div> <!-- This ID matches the one used in navbar.js -->
+<div id="navbar"></div>
 <script src="../navbar.js"></script>
 
+<!-- CONTEXT MENUS -->
+<div id="itemMasterMenu" class="custom-context-menu" style="display: none;">
+    <ul>
+        <li onclick="editLineItem()">Edit Line Item</li>
+        <li onclick="addLineItem()">Add Line Item</li>
+        <li onclick="deleteLineItem()">Delete Line Item</li>
+        <li onclick="copyLineItem()">Copy Line Item</li>
+    </ul>
+</div>
 
-        <h1>Purchase Order System</h1> <!-- Updated line -->
-        <form id="purchaseOrder">
+<div id="selectedItemsMenu" class="custom-context-menu" style="display: none;">
+    <ul>
+        <li onclick="editItem()">Edit</li>
+        <li onclick="addLine()">Add Line</li>
+        <li onclick="deleteLine()">Delete Line</li>
+        <li onclick="copy()">Copy</li>
+        <li onclick="paste()">Paste</li>
+    </ul>
+</div>
+
+<!-- PRINT PO BUTTON - NEED TO UPDATE/DISCO FROM PRINTPO -->
+<div class="create-po-container">
+    <button id="printPoButton">Print Purchase Order</button>
+</div>
+
+<div class="container">
+    <div class="po-filter-box" id="filterBox">
+    <form id="purchaseOrder">
             <div class="form-group">
                 <label for="Project">Project:</label>
                 <input type="text" id="Project" name="Project">
@@ -40,87 +64,70 @@
                 <input type="text" id="Keyword" name="Keyword" step="0.02">
             </div>
         </form>
-
-        <h2>Purchase Orders</h2>
-        <div id="PurchaseOrdersTable">
-            <table border="1">
-                <tr>
-                    <th class="sticky-header">PO</th>
-                    <th class="sticky-header">Project</th>
-                    <th class="sticky-header">Task</th>
-                    <th class="sticky-header">Buyer</th>
-                    <th class="sticky-header">Vendor</th>
-                    <th class="sticky-header">PO Amount</th>
-                    <th class="sticky-header">Invoiced Amount</th>
-                    <th class="sticky-header">Open Commit</th>
-                    <th class="sticky-header">Longest LL</th>
-                </tr>
-            </table>
-        </div>
-        <div class="blank-window">
-            <!-- Content or data will be dynamically updated here -->
-        </div>
-        <h3>PO Contents</h3>
-        <div id="POContents">
-            <table border="1">
-                <tr>
-                    <th class="sticky-header">Sort</th>
-                    <th class="sticky-header">Unit ID</th>
-                    <th class="sticky-header">Material Spec</th>
-                    <th class="sticky-header">Brand</th>
-                    <th class="sticky-header">Size</th>
-                    <th class="sticky-header">Size 2</th>
-                    <th class="sticky-header">Size 3</th>
-                    <th class="sticky-header">Description</th>
-                    <th class="sticky-header">Details</th>
-                    <th class="sticky-header">PN</th>
-                    <th class="sticky-header">Callout</th>
-                    <th class="sticky-header">Price</th>
-                    <th class="sticky-header">Labor Rate (MCA)</th>    
-                </tr>
-            </table>
-        </div>
-        <div class="blank-window">
-            <!-- Content or data will be dynamically updated here -->
-        </div>
-        <!-- Add a button to generate PDF -->
-        <div id="pdfButtonContainer">
-            <button onclick="generatePDF()">Generate PDF</button>
-        </div>
     </div>
 
-    <script src="app.js"></script>
-    <script>
-        document.getElementById('Buyer').value = ''; // Set the default value to an empty string
-        function generatePDF() {
-            var pdf = new jsPDF();
-            var content = document.getElementById('PurchaseOrders');
-            
-            // Convert HTML to PDF
-            pdf.html(content, {
-                callback: function (pdf) {
-                    // Get the PDF as a Blob
-                    var blob = pdf.output('blob');
+    <div class="table-container">
+        <h1>Purchase Orders</h1>
+        <div class="scrollable-table">
+            <table id="purchaseOrdersTable" border="1">
+                <thead>
+                    <tr>
+                        <th>PO Number</th>
+                        <th>Vendor</th>
+                        <th>Vendor Code</th>
+                        <th>PO Date</th>
+                        <th>Need By Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                    include '../src/config/db_connect.php';
 
-                    // Create a URL for the Blob
-                    var blobURL = URL.createObjectURL(blob);
+                    $sql = "SELECT * FROM purchase_orders";
+                    $stmt = $pdo->query($sql);
 
-                    // Create an anchor element to trigger the download
-                    var a = document.createElement('a');
-                    a.href = blobURL;
-                    a.download = 'purchase_order.pdf';
+                    while ($row = $stmt->fetch()) {
+                        echo "<tr>";
+                        echo "<td>" . htmlspecialchars($row["po_number"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["vendor_name"]) . "</td>"; 
+                        echo "<td>" . htmlspecialchars($row["vendor_code"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["po_date"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["need_by_date"]) . "</td>";
+                        echo "</tr>";
+                    }
+                ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-                    // Append the anchor element to the document
-                    document.body.appendChild(a);
+<h2>Workspace</h2>
+<div class="scrollableTable">
+    <table id="workspaceTable" border="1">
+        <thead>
+            <tr>
+                <Th>PO number</th>
+                <th>Material Spec</th>
+                <th>Brand</th>
+                <th>Size 1</th>
+                <th>Size 2</th>
+                <th>Size 3</th>
+                <th>Description</th>
+                <th>Details</th>
+                <th>PN</th>
+                <th>Callout</th>
+                <th>Price</th>
+                <th>Labor Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Dynamically populated by JavaScript -->
+        </tbody>
+    </table>
+</div>
 
-                    // Trigger a click on the anchor element to start the download
-                    a.click();
-
-                    // Remove the anchor element from the document
-                    document.body.removeChild(a);
-                }
-            });
-        }
-    </script>
+<!-- JavaScript Files -->
+<script src="../public/js/purchaseOrderTables.js"></script>
 </body>
 </html>
