@@ -160,10 +160,7 @@ function addItemToSelected(row) {
     table.appendChild(newRow); // Append the cloned row to the Selected Items table
 }
 </script>
-
-        <script src="../public/js/tableInteractions.js"></script>
-        <script src="../public/js/contextMenu.js"></script>
-        
+       
         </tbody>
     </table>
 </div>
