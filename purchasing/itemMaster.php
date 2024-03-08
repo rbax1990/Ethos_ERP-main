@@ -31,51 +31,36 @@
     </ul>
 </div>
 
-<!--CREATE PO BUTTON-->
+<!-- CREATE PO BUTTON -->
 <div class="create-po-container">
     <button id="createPoButton">Create Purchase Order</button>
 </div>
 
-<!-- CREATE PO CONTEXT MENU -->
-<div id="createPoContextMenu" class="custom-context-menu" style="display: none;">
-    <form id="poDetailsForm">
-        <div>
-            <label for="supplierNameContextMenu">Supplier Name:</label>
-            <input type="text" id="supplierNameContextMenu" name="supplierName"><br>
-        </div>
-        <div>
-            <label for="poDateContextMenu">PO Date:</label>
-            <input type="date" id="poDateContextMenu" name="poDate"><br>
-        </div>
-        <div>
-            <input type="button" value="Submit" onclick="createPurchaseOrder()">
-        </div>
-    </form>
+<!-- PURCHASE ORDER MODAL -->
+<div id="poModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <h2>Create Purchase Order</h2>
+        <form id="poDetailsForm">
+            <label for="vendorName">Vendor Name:</label>
+            <input type="text" id="vendorName" name="vendor_name" required><br>
+
+            <label for="vendorCode">Vendor Code:</label>
+            <input type="text" id="vendorCode" name="vendor_code" required><br>
+
+            <label for="poDate">PO Date:</label>
+            <input type="date" id="poDate" name="po_date" required><br>
+
+            <label for="needByDate">Need By Date:</label>
+            <input type="date" id="needByDate" name="need_by_date" required><br>
+
+            <!-- Additional fields -->
+
+            <input type="button" value="Create PO" id="submitPoButton" class="create-po-button">
+            <input type="button" value="Cancel" onclick="closeModal()" class="cancel-button">
+        </form>
+    </div>
 </div>
 
-<!--CREATE PO BUTTON-->
-<div class="create-po-container">
-    <button id="createPoButton">Create Purchase Order</button>
-</div>
-
-<!-- CREATE PO CONTEXT MENU -->
-<div id="createPoContextMenu" class="custom-context-menu" style="display: none;">
-    <form id="poDetailsForm">
-        <div>
-            <label for="supplierNameContextMenu">Supplier Name:</label>
-            <input type="text" id="supplierNameContextMenu" name="supplierName"><br>
-        </div>
-        <div>
-            <label for="poDateContextMenu">PO Date:</label>
-            <input type="date" id="poDateContextMenu" name="poDate"><br>
-        </div>
-        <div>
-            <input type="button" value="Submit" onclick="createPurchaseOrder()">
-        </div>
-    </form>
-</div>
-
-<!--NEED TO UPDATE THIS FOR SELECTION TREE-->
 <div class="container">
     <div class="selection-tree" id="selectionTree"></div>
     
@@ -94,46 +79,50 @@
                         <th>Details</th>
                         <th>PN</th>
                         <th>Callout</th>
+                        <th>Quantity</th>
                         <th>Price</th>
+                        <th>Ext. Price</th>
                         <th>Labor Rate</th>
+                        <th>Ext. Labor</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php
                     include '../src/config/db_connect.php';
 
-                    $sql = "SELECT * FROM itemMaster";
+                    $sql = "SELECT *, quantity * price AS ext_price FROM itemMaster";
                     $stmt = $pdo->query($sql);
-
-                while ($row = $stmt->fetch()) {
-                    // DOUBLE CHECK THIS FIRST LINE. WAS <TR>
-                    echo "<tr ondblclick='addItemToSelected(this)'>";
-                    // DOUBLE CHECK THIS FIRST LINE. WAS <TR>
-                    echo "<tr ondblclick='addItemToSelected(this)'>";
-                    echo "<td>". htmlspecialchars($row['unit_id']) . "</td>";
-                    echo "<td>". htmlspecialchars($row['material_spec']) . "</td>";
-                    echo "<td>". htmlspecialchars($row["brand"]) . "</td>"; 
-                    echo "<td>". htmlspecialchars($row["size_1"]) . "</td>";
-                    echo "<td>". htmlspecialchars($row["size_2"]) . "</td>";
-                    echo "<td>". htmlspecialchars($row["size_3"]) . "</td>";
-                    echo "<td>". htmlspecialchars($row["description"]) . "</td>";
-                    echo "<td>". htmlspecialchars($row["details"]) . "</td>";
-                    echo "<td>". htmlspecialchars($row["pn"]) . "</td>";
-                    echo "<td>". htmlspecialchars($row["callout"]) . "</td>";
-                    echo "<td>". htmlspecialchars($row["price"]) . "</td>";
-                    echo "<td>". htmlspecialchars($row["labor_rate"]) . "</td>";
-                    echo "</tr>";
-                }
-                ?> 
-
-        </tbody>
-    </table>
+                    
+                    while ($row = $stmt->fetch()) {
+                        $pn = htmlspecialchars($row["pn"]); // Ensure to escape the content to prevent XSS
+                        echo "<tr data-id='{$pn}'>"; // Set the data-id attribute to the PN value
+                        echo "<td>" . htmlspecialchars($row["material_spec"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["brand"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["size_1"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["size_2"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["size_3"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["description"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["details"]) . "</td>";
+                        echo "<td>" . $pn . "</td>"; // PN is already escaped above
+                        echo "<td>" . htmlspecialchars($row["callout"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["quantity"]) . "</td>"; // Ext. Price might be calculated on the fly
+                        echo "<td>" . htmlspecialchars($row["price"]) . "</td>"; // Ext. Price might be calculated on the fly
+                        echo "<td>" . htmlspecialchars($row["ext_price"]) . "</td>"; // Ext. Labor might be calculated on the fly
+                        echo "<td>" . htmlspecialchars($row["labor_rate"]) . "</td>"; // Ext. Labor might be calculated on the fly
+                        echo "<td>" . htmlspecialchars($row["ext_labor"]) . "</td>"; // Ext. Labor might be calculated on the fly
+                        echo "</tr>";
+                    }
+                ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
-</div>
+
+
 
 <h2>Selected Items</h2>
-<div class="scrollableTable">
+<div class="scrollable-Table">
     <table id="selectedItemsTable" border="1">
         <thead>
             <tr>
@@ -146,21 +135,15 @@
                 <th>Details</th>
                 <th>PN</th>
                 <th>Callout</th>
+                <th>Quantity</th>
                 <th>Price</th>
+                <th>Ext. Price</th>
                 <th>Labor Rate</th>
+                <th>Ext. Labor</th>
             </tr>
         </thead>
         <tbody>
-
-        <script>
-function addItemToSelected(row) {
-    var table = document.getElementById("selectedItemsTable").getElementsByTagName('tbody')[0];
-    var newRow = row.cloneNode(true);
-    newRow.removeAttribute('ondblclick'); // Remove the ondblclick attribute from the cloned row
-    table.appendChild(newRow); // Append the cloned row to the Selected Items table
-}
-</script>
-       
+            <!-- Dynamically populated by JavaScript -->
         </tbody>
     </table>
 </div>
@@ -169,6 +152,8 @@ function addItemToSelected(row) {
 <script src="../public/js/contextMenu.js"></script>
 <script src="../public/js/itemMasterTables.js"></script>
 <script src="../public/js/purchaseOrderCreation.js"></script>
+<script src="../public/js/allTableFunctions.js"></script>
+
 
 </body>
 </html>

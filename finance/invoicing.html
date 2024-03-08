@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Lookup</title>
+    <link rel="stylesheet" href="../public/css/style.css">
+    <style>
+        /* Additional styles for the invoice results section */
+        #invoice-results {
+            overflow-y: auto; /* Enables vertical scrolling if content overflows */
+            max-height: 400px; /* Adjust based on your preference */
+            border: 1px solid #ccc; /* Optional, for visual distinction */
+            margin-top: 20px; /* Spacing from the form */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse; /* For a cleaner look */
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #ddd; /* For horizontal lines between rows */
+        }
+    </style>
+    <div id="navbar"></div> <!-- This ID matches the one used in navbar.js -->
+    <script src="../navbar.js"></script>
+</head>
+<body>
+
+    <main>
+        <h1>Invoice Lookup</h1>
+        <form id="invoice-search-form">
+            <div class="form-group">
+                <label for="project-name">Project Name:</label>
+                <input type="text" id="project-name" name="project-name"placeholder="Project Name">
+            </div>
+            <div class="form-group">
+                <label for="vendor">Vendor:</label>
+                <input type="text" id="vendor" name="vendor"placeholder="Vendor">
+            </div>
+            <button type="submit">Search</button>
+        </form>
+                <!-- Invoice Results Section -->
+                <div id="invoice-results">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Invoice Number</th>
+                                <th>Vendor Name</th>
+                                <th>PO Number</th>
+                                <th>Invoice Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Dynamically populated rows will go here -->
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

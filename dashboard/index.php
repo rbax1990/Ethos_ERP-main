@@ -1,3 +1,36 @@
+<?php
+// Database connection variables
+$servername = "127.0.0.1";
+$username = "root";
+$password = "";
+$dbname = "ethos_database";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+// Assuming the rest of your PHP code would go here
+
+// Start the session
+session_start();
+
+// Check for a logout action
+if (isset($_GET['logout'])) {
+    // Remove all session variables
+    session_unset();
+
+    // Destroy the session
+    session_destroy();
+
+    // Redirect to the login page
+    header('Location: login.html');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +77,7 @@
     <script src="../navbar.js"></script>
 
     <!-- Company Logo -->
-    <div class="company-logo">
+    <div class="company-logo2">
         <img src="/Ethos_ERP-main/public/images/Ethos_Mech_Logo_Small.png" alt="Ethos Mechanical Logo">
     </div>
     

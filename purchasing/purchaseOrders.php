@@ -77,6 +77,9 @@
                         <th>Vendor Code</th>
                         <th>PO Date</th>
                         <th>Need By Date</th>
+                        <th>Quote</th>
+                        <th>Packing Slip</th>
+                        <th>Invoice</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -93,6 +96,9 @@
                         echo "<td>" . htmlspecialchars($row["vendor_code"]) . "</td>";
                         echo "<td>" . htmlspecialchars($row["po_date"]) . "</td>";
                         echo "<td>" . htmlspecialchars($row["need_by_date"]) . "</td>";
+                        echo "<td><input type='checkbox' disabled ".($row["quote_attached"] ? "checked" : "")."></td>";
+                        echo "<td><input type='checkbox' disabled ".($row["packing_slip_attached"] ? "checked" : "")."></td>";
+                        echo "<td><input type='checkbox' disabled ".($row["invoice_attached"] ? "checked" : "")."></td>";
                         echo "</tr>";
                     }
                 ?>
@@ -117,8 +123,11 @@
                 <th>Details</th>
                 <th>PN</th>
                 <th>Callout</th>
+                <th>Quantity</th>
                 <th>Price</th>
+                <th>Ext. Price</th>
                 <th>Labor Rate</th>
+                <th>Ext. Labor</th>
             </tr>
         </thead>
         <tbody>
@@ -129,5 +138,10 @@
 
 <!-- JavaScript Files -->
 <script src="../public/js/purchaseOrderTables.js"></script>
+<script src="../public/js/allTableFunctions.js"></script>
+<script src="../public/js/poAttachHandler.js"></script>
+
+
+
 </body>
 </html>

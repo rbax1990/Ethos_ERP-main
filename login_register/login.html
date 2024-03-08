@@ -58,24 +58,42 @@
             background-color: #a00f15; /* Slightly darker red for hover effect */
         }
     </style>
+    <script>
+        // Moved the event listener into a separate function for clarity
+        function addShowPasswordListener() {
+            document.getElementById('show-password').addEventListener('click', function(e) {
+                var passwordInput = document.getElementById('password');
+                passwordInput.type = this.checked ? 'text' : 'password';
+            });
+        }
+
+        // Handle form submission
+        function handleLogin(event) {
+            event.preventDefault(); // Prevent the default form submission
+            
+            // Here, you would typically validate the user's credentials with a server-side check.
+            // For demonstration purposes, we redirect to the dashboard page.
+            window.location.href = '../dashboard/index.html';
+        }
+
+        // Add event listeners when the window loads
+        window.onload = function() {
+            addShowPasswordListener();
+        };
+    </script>
 </head>
 <body>
-    <img src="../public/images/Ethos_Mech_Logo.png" alt="Ethos Mech Logo" class="logo">
+    <img src="../public/images/Ethos_Mech_Logo_Small.png" alt="Ethos Mech Logo" class="logo">
     
     <h2>Ethos Mechanical ERP<br>Please Login Below</h2>
 
-    <form class="login-form">
-        <label for="email">Email:</label>
-        <input type="email" id="email" required>
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" required>
-
+    <form class="login-form" action="login_user.php" method="POST">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
         <div class="show-password-container">
             <label for="show-password">Show Password</label>
             <input type="checkbox" id="show-password">
         </div>
-
         <div>
             <button type="submit">Login</button>
             <button type="button" onclick="location.href='index.html'">Cancel</button>
