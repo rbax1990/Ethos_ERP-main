@@ -368,3 +368,15 @@
   width: auto; /* Keep the aspect ratio of your logo */
 }
 
+/*TOTALS SUMMARY, PRICE AND LABOR */
+.page-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Adjusts space distribution */
+}
+
+.totals-summary {
+  align-self: flex-end; /* Aligns the summary to the bottom */
+  padding: 20px; /* Adds some space around the summary */
+}
+

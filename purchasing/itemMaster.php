@@ -41,6 +41,16 @@
     <div class="modal-content">
         <h2>Create Purchase Order</h2>
         <form id="poDetailsForm">
+
+        <label for="projectNumber">Project:</label>
+            <input type="text" id="projectNumber" name="project_number" required><br>
+
+            <label for="taskNumber">Task:</label>
+            <input type="text" id="taskNumber" name="task_number" required><br>
+
+            <label for="taskName">Task Name:</label>
+            <input type="text" id="taskName" name="task_name" required><br>
+
             <label for="vendorName">Vendor Name:</label>
             <input type="text" id="vendorName" name="vendor_name" required><br>
 
