@@ -41,6 +41,16 @@
     <div class="modal-content">
         <h2>Create Purchase Order</h2>
         <form id="poDetailsForm">
+
+        <label for="projectNumber">Project:</label>
+            <input type="text" id="projectNumber" name="project_number" required><br>
+
+            <label for="taskNumber">Task:</label>
+            <input type="text" id="taskNumber" name="task_number" required><br>
+
+            <label for="taskName">Task Name:</label>
+            <input type="text" id="taskName" name="task_name" required><br>
+
             <label for="vendorName">Vendor Name:</label>
             <input type="text" id="vendorName" name="vendor_name" required><br>
 
@@ -84,15 +94,13 @@
                         <th>Ext. Price</th>
                         <th>Labor Rate</th>
                         <th>Ext. Labor</th>
-
-
                     </tr>
                 </thead>
                 <tbody>
                 <?php
                     include '../src/config/db_connect.php';
 
-                    $sql = "SELECT *, quantity * price AS extended_price FROM itemMaster";
+                    $sql = "SELECT *, quantity * price AS ext_price FROM itemMaster";
                     $stmt = $pdo->query($sql);
                     
                     while ($row = $stmt->fetch()) {
@@ -107,11 +115,11 @@
                         echo "<td>" . htmlspecialchars($row["details"]) . "</td>";
                         echo "<td>" . $pn . "</td>"; // PN is already escaped above
                         echo "<td>" . htmlspecialchars($row["callout"]) . "</td>";
-                        echo "<td>" . htmlspecialchars($row["quantity"]) . "</td>";
-                        echo "<td>" . htmlspecialchars($row["price"]) . "</td>";
-                        echo "<td>" . htmlspecialchars($row["extended_price"]) . "</td>";
-                        echo "<td>" . htmlspecialchars($row["labor_rate"]) . "</td>";
-                        echo "<td>" . htmlspecialchars($row["ext_labor"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["quantity"]) . "</td>"; // Ext. Price might be calculated on the fly
+                        echo "<td>" . htmlspecialchars($row["price"]) . "</td>"; // Ext. Price might be calculated on the fly
+                        echo "<td>" . htmlspecialchars($row["ext_price"]) . "</td>"; // Ext. Labor might be calculated on the fly
+                        echo "<td>" . htmlspecialchars($row["labor_rate"]) . "</td>"; // Ext. Labor might be calculated on the fly
+                        echo "<td>" . htmlspecialchars($row["ext_labor"]) . "</td>"; // Ext. Labor might be calculated on the fly
                         echo "</tr>";
                     }
                 ?>
@@ -124,7 +132,7 @@
 
 
 <h2>Selected Items</h2>
-<div class="scrollableTable">
+<div class="scrollable-Table">
     <table id="selectedItemsTable" border="1">
         <thead>
             <tr>

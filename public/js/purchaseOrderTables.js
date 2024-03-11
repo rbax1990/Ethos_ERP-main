@@ -1,10 +1,18 @@
-//PURCHASE ORDER TABLES ONLY
+// PURCHASE ORDER TABLES ONLY
 document.addEventListener('DOMContentLoaded', function() {
     // Attach event listener to each row in the purchaseOrdersTable
     document.querySelectorAll('#purchaseOrdersTable tbody tr').forEach(row => {
         row.addEventListener('click', function() {
-            // Assuming the PO number is in the first cell
-            const poNumber = this.cells[0].textContent;
+            // Remove highlighting from all other rows
+            document.querySelectorAll('#purchaseOrdersTable tbody tr').forEach(r => {
+                r.classList.remove('selected-row');
+            });
+
+            // Highlight the clicked row
+            this.classList.add('selected-row');
+
+            // Assuming the PO number is in the 4th cell
+            const poNumber = this.cells[3].textContent;
             fetchPOItemsAndPopulateWorkspace(poNumber);
         });
     });
@@ -30,37 +38,63 @@ function populateWorkspaceTable(items) {
     const workspaceTableBody = document.querySelector('#workspaceTable tbody');
     workspaceTableBody.innerHTML = ''; // Clear existing rows
 
+    let totalExtPrice = 0;
+    let totalExtLabor = 0;
+    let totalInvoicedAmount = 0; // Added to keep track of invoiced amounts
+
     items.forEach(item => {
         const row = workspaceTableBody.insertRow();
 
-        // Add cells for each property in the item
         Object.values(item).forEach((text, index) => {
             const cell = row.insertCell();
             cell.textContent = text;
-            
-            // Adjust these index values to match WORKSPACE TABLE
-            if (index === 10) {
-                cell.innerHTML = '';
-                const quantityInput = document.createElement('input');
-                quantityInput.type = 'number';
-                quantityInput.className = 'quantity-input';
-                quantityInput.value = item.quantity || 0;
-                quantityInput.style.width = '100%';
-                cell.appendChild(quantityInput);
+
+            // Assuming the Ext Price is at index 14 and Ext Labor at index 15
+            if (index === 15) {
+                totalExtPrice += parseFloat(text) || 0;
             }
 
-            if (index === 11) {
-                cell.innerHTML = '';
-                const priceInput = document.createElement('input');
-                priceInput.type = 'number';
-                priceInput.className = 'price-input';
-                priceInput.value = item.price || 0;
-                priceInput.style.width = '100%';
-                cell.appendChild(priceInput);
+            if (index === 17) {
+                totalExtLabor += parseFloat(text) || 0;
             }
-            
-            // Remove or adjust these if you no longer have 'Ext. Price' and 'Ext. Labor' inputs
-            // ... (other column adjustments if needed)
+
+            // Assuming Invoiced Amount is at a certain index, e.g., 16
+            if (index === 18) { 
+                totalInvoicedAmount += parseFloat(text) || 0;
+            }
         });
     });
+
+    // Update the display with the calculated totals
+    document.getElementById('totalExtPrice').textContent = formatAsCurrency(totalExtPrice);
+    document.getElementById('totalExtLabor').textContent = totalExtLabor.toFixed(2); // Format as a standard number with two decimals
+
+    // Assuming you have a way to get the PO number for the selected row
+    const selectedPONumber = document.querySelector('.selected-row').cells[3].textContent;
+
+    // Calculate Open Commit
+    const openCommitAmount = totalExtPrice - totalInvoicedAmount;
+
+    // Update the PO Amount and Open Commit in the purchaseOrdersTable
+    updatePurchaseOrderAmounts(selectedPONumber, totalExtPrice, openCommitAmount);
+}
+
+function updatePurchaseOrderAmounts(poNumber, poAmount, openCommit) {
+    // Locate the row in the purchaseOrdersTable
+    let rowToUpdate = null;
+    document.querySelectorAll('#purchaseOrdersTable tbody tr').forEach(row => {
+        if (row.cells[3].textContent === poNumber) {
+            rowToUpdate = row;
+        }
+    });
+
+    if (rowToUpdate) {
+        // Update the PO Amount and Open Commit
+        rowToUpdate.cells[8].textContent = formatAsCurrency(poAmount); // Replace 9 with the correct index for PO Amount
+        rowToUpdate.cells[10].textContent = formatAsCurrency(openCommit); // Replace 11 with the correct index for Open Commit
+    }
+}
+
+function formatAsCurrency(value) {
+    return '$' + value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 }

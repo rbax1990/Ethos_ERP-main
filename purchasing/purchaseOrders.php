@@ -72,14 +72,21 @@
             <table id="purchaseOrdersTable" border="1">
                 <thead>
                     <tr>
+                        <th>Project</th>
+                        <th>Task</th>
+                        <th>Task Name</th>   
                         <th>PO Number</th>
                         <th>Vendor</th>
                         <th>Vendor Code</th>
                         <th>PO Date</th>
                         <th>Need By Date</th>
-                        <th>Quote</th>
-                        <th>Packing Slip</th>
-                        <th>Invoice</th>
+                        <th>PO Amount</th>
+                        <th>Invoiced Amount</th>
+                        <th>Open Commit</th>
+                        <th>Notes</th>
+                        <th>Qu</th>
+                        <th>PS</th>
+                        <th>In</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -91,11 +98,18 @@
 
                     while ($row = $stmt->fetch()) {
                         echo "<tr>";
+                        echo "<td>" . htmlspecialchars($row["project_number"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["task_number"]) . "</td>"; 
+                        echo "<td>" . htmlspecialchars($row["task_name"]) . "</td>"; 
                         echo "<td>" . htmlspecialchars($row["po_number"]) . "</td>";
                         echo "<td>" . htmlspecialchars($row["vendor_name"]) . "</td>"; 
                         echo "<td>" . htmlspecialchars($row["vendor_code"]) . "</td>";
                         echo "<td>" . htmlspecialchars($row["po_date"]) . "</td>";
                         echo "<td>" . htmlspecialchars($row["need_by_date"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["po_amount"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["invoiced_amount"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["open_commit"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["notes"]) . "</td>";
                         echo "<td><input type='checkbox' disabled ".($row["quote_attached"] ? "checked" : "")."></td>";
                         echo "<td><input type='checkbox' disabled ".($row["packing_slip_attached"] ? "checked" : "")."></td>";
                         echo "<td><input type='checkbox' disabled ".($row["invoice_attached"] ? "checked" : "")."></td>";
@@ -108,11 +122,21 @@
     </div>
 </div>
 
+    <!-- PO SUMMARY - EXT. PRICE AND EXT. LABOR ROLLUP -->
+    <div id="totalsDisplay" class="totals-summary">
+        <p>Total Ext Price: <span id="totalExtPrice">0</span></p>
+        <p>Total Ext Labor: <span id="totalExtLabor">0</span></p>
+    </div>
+</div>
+
 <h2>Workspace</h2>
 <div class="scrollableTable">
     <table id="workspaceTable" border="1">
         <thead>
             <tr>
+                <th>Project</th>
+                <th>Task</th> 
+                <th>Task Name</th>   
                 <Th>PO number</th>
                 <th>Material Spec</th>
                 <th>Brand</th>
@@ -126,8 +150,8 @@
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Ext. Price</th>
-                <th>Labor Rate</th>
-                <th>Ext. Labor</th>
+                <th>Labor</th>
+                <th>Ext. Labor</th>  
             </tr>
         </thead>
         <tbody>
@@ -138,7 +162,6 @@
 
 <!-- JavaScript Files -->
 <script src="../public/js/purchaseOrderTables.js"></script>
-<script src="../public/js/allTableFunctions.js"></script>
 <script src="../public/js/poAttachHandler.js"></script>
 
 

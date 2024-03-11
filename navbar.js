@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="navbar-info"></div>
       <div class="navbar-info"></div>
       <a class="button-btn" href="/Ethos_ERP-main/dashboard/index.php">Dashboard</a>
+      <a class="button-btn" href="/Ethos_ERP-main/dashboard/index.php">Dashboard</a>
       
       <div class="dropdown">
         <button class="dropdown-btn">Project Mgmt</button>
@@ -16,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="dropdown">
         <button class="dropdown-btn">Purchasing</button>
         <div class="dropdown-content">
+          <a href="/Ethos_ERP-main/purchasing/itemMaster.php">Item Master</a>
           <a href="/Ethos_ERP-main/purchasing/itemMaster.php">Item Master</a>
           <a href="/Ethos_ERP-main/purchasing/reqs.php">Requisitions</a>       
           <a href="/Ethos_ERP-main/purchasing/purchaseOrders.php">Purchase Orders</a>
@@ -77,4 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   `;
 });
+
+
 

@@ -368,32 +368,15 @@
   width: auto; /* Keep the aspect ratio of your logo */
 }
 
-#submit-button {
-  background-color: #b90f16; /* This is Bootstrap's btn-danger color, you should adjust it to match the exact color you need */
-  border-color: #d43f3a; /* This is Bootstrap's btn-danger border color, you should adjust it to match the exact color you need */
-  color: white;
-  padding: 10px 16px;
-  font-size: 14px;
-  line-height: 1.33;
-  border-radius: 4px; /* Adjust if your buttons have a different border-radius */
-  box-shadow: none; /* Assuming there is no shadow, you can remove this if there is */
-  border: 1px solid transparent;
-  margin-right: 8px; /* Add some space between buttons if necessary */
-  cursor: pointer;
-  /* Add hover and active states */
+/*TOTALS SUMMARY, PRICE AND LABOR */
+.page-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Adjusts space distribution */
 }
 
-#submit-button:hover,
-#submit-button:focus,
-#submit-button:active {
-  background-color: #c9302c; /* Darker shade for hover/active, adjust as necessary */
-  border-color: #ac2925; /* Darker border for hover/active, adjust as necessary */
+.totals-summary {
+  align-self: flex-end; /* Aligns the summary to the bottom */
+  padding: 20px; /* Adds some space around the summary */
 }
 
-/* Focus state when the button is focused with tab key */
-#submit-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(217, 83, 79, 0.5); /* A light glow effect, adjust color and size as needed */
-}
-
-/* Add styles for other buttons if necessary */

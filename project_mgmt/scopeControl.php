@@ -144,25 +144,38 @@
     <table id="wbsTable" border="1">
         <thead>
             <tr>
-                <th>Project Number</th>
-                <th>Project Name</th>
-                <th>Task Name</th>
-                <th>Task Number</th>
-                <th>Design Start</th>
-                <th>Design Finish</th>
-                <th>Pre-hookup Start</th>
-                <th>Pre-hookup Finish</th>
-                <th>Move-in Start</th>
-                <th>Move-in Finish</th>
-                <th>FA</th>
-                <th>Type</th>
-                <th>Org Contract Amount</th>
-                <th>Org Cost</th>
-                <th>C+P (Contract Plus Changes)</th>
-                <th>CTC (Cost to Complete)</th>
-                <th>Org Margin</th>
-                <th>Current Margin</th>
-                <th>Gross Profit</th>
+            <th>Project Number</th>
+            <th>Project Name</th>
+            <th>Task Name</th>
+            <th>Task Number</th>
+            <th>Design Start</th>
+            <th>Design Finish</th>
+            <th>Pre-hookup Start</th>
+            <th>Pre-hookup Finish</th>
+            <th>Move-in Start</th>
+            <th>Move-in Finish</th>
+            <th>FA</th>
+            <th>Type</th>
+            <th>Org Contract Amount</th>
+            <th>Org Cost</th>
+            <th>Org Margin</th>
+            <th>C+P (Contract Plus Changes)</th>
+            <th>CTC (Cost to Complete)</th>
+            <th>Current Margin</th>
+            <th>C+P Labor</th>
+            <th>C+P Hrs</th>
+            <th>C+P Material</th>
+            <th>Labor Budget</th>
+            <th>Hrs Budget</th>
+            <th>Material Budget</th>
+            <th>Actual Labor</th>
+            <th>Actual Material</th>
+            <th>Open Commit</th>
+            <th>CTC Labor</th>
+            <th>CTC Hrs</th>
+            <th>CTC Material</th>
+            <th>Org Crew Rate</th>
+            <th>Current Crew Rate</th>
             </tr>
         </thead>
         <tbody>
@@ -175,10 +188,6 @@
 <!-- JavaScript Files -->
 <script src="../public/js/allTableFunctions.js"></script>
 <script src="../public/js/scopeControlTables.js"></script>
-
-
-
-
 
 </body>
 </html>
