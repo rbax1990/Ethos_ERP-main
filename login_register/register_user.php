@@ -1,3 +1,31 @@
+<?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    include '../src/config/db_connect.php'; // Adjust the path as needed
+
+    // Retrieve and sanitize form data
+    $firstName = filter_var($_POST['first-name'], FILTER_SANITIZE_STRING);
+    $lastName = filter_var($_POST['last-name'], FILTER_SANITIZE_STRING);
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $password = $_POST['password']; // Get the raw password
+
+    // Hash the password
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    // Prepare SQL statement to insert data into the 'employees' table
+    $sql = "INSERT INTO employees (first_name, last_name, email, password) VALUES (?, ?, ?, ?)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$firstName, $lastName, $email, $hashedPassword]);
+
+    // Redirect or handle success
+    // For example, you could redirect to a login page on success
+    header('Location: login.html');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

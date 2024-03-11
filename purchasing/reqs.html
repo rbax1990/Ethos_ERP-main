@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ethos Mechanical Purchase Orders</title>
+    <title>Ethos Mechanical Requisitions</title>
     <link rel="stylesheet" href="../public/css/style.css">
 </head>
 <body>
@@ -31,14 +31,13 @@
     </ul>
 </div>
 
-<!-- PRINT PO BUTTON - NEED TO UPDATE/DISCO FROM PRINTPO -->
-<div class="create-po-container">
-    <button id="printPoButton">Print Purchase Order</button>
+<div class="create-req-container">
+    <button id="submitReqButton">Submit For Approval</button>
 </div>
 
 <div class="container">
     <div class="po-filter-box" id="filterBox">
-    <form id="purchaseOrder">
+        <form id="requisitionOrder">
             <div class="form-group">
                 <label for="Project">Project:</label>
                 <input type="text" id="Project" name="Project">
@@ -50,58 +49,32 @@
             </div>
             
             <div class="form-group">
-                <label for="Buyer">Buyer:</label>
-                <select id="Buyer" name="Buyer">
-                    <option value="Buyer 1">Tuttle, Ryan</option>
-                    <option value="Buyer 2">Baxley, Ryan</option>
-                    <option value="Buyer 3">Maxwell, Alexander</option>
-                    <option value="Buyer 4">Baker, Benjamin</option>
-                </select>
+                <label for="System">System:</label>
+                <input type="text" id="System" name="System" step="0.02">
             </div>
 
             <div class="form-group">
-                <label for="Keyword">Keyword:</label>
-                <input type="text" id="Keyword" name="Keyword" step="0.02">
+                <label for="Approver">Approver:</label>
+                <select id="Approver" name="Approver">
+                </select>
             </div>
         </form>
     </div>
 
     <div class="table-container">
-        <h1>Purchase Orders</h1>
+        <h1>Requisitions</h1>
         <div class="scrollable-table">
-            <table id="purchaseOrdersTable" border="1">
+            <table id="requisitionsTable" border="1">
                 <thead>
                     <tr>
-                        <th>PO Number</th>
+                        <th>Req Number</th>
                         <th>Vendor</th>
                         <th>Vendor Code</th>
                         <th>PO Date</th>
                         <th>Need By Date</th>
-                        <th>Quote</th>
-                        <th>Packing Slip</th>
-                        <th>Invoice</th>
                     </tr>
                 </thead>
                 <tbody>
-                <?php
-                    include '../src/config/db_connect.php';
-
-                    $sql = "SELECT * FROM purchase_orders";
-                    $stmt = $pdo->query($sql);
-
-                    while ($row = $stmt->fetch()) {
-                        echo "<tr>";
-                        echo "<td>" . htmlspecialchars($row["po_number"]) . "</td>";
-                        echo "<td>" . htmlspecialchars($row["vendor_name"]) . "</td>"; 
-                        echo "<td>" . htmlspecialchars($row["vendor_code"]) . "</td>";
-                        echo "<td>" . htmlspecialchars($row["po_date"]) . "</td>";
-                        echo "<td>" . htmlspecialchars($row["need_by_date"]) . "</td>";
-                        echo "<td><input type='checkbox' disabled ".($row["quote_attached"] ? "checked" : "")."></td>";
-                        echo "<td><input type='checkbox' disabled ".($row["packing_slip_attached"] ? "checked" : "")."></td>";
-                        echo "<td><input type='checkbox' disabled ".($row["invoice_attached"] ? "checked" : "")."></td>";
-                        echo "</tr>";
-                    }
-                ?>
                 </tbody>
             </table>
         </div>
@@ -113,7 +86,7 @@
     <table id="workspaceTable" border="1">
         <thead>
             <tr>
-                <Th>PO number</th>
+                <Th>Req number</th>
                 <th>Material Spec</th>
                 <th>Brand</th>
                 <th>Size 1</th>
@@ -136,12 +109,33 @@
     </table>
 </div>
 
+<!-- JavaScript to Populate Approver Dropdown Dynamically -->
+<script>
+function populateApprovers() {
+    const approvers = [
+        { id: "Buyer 1", name: "Tuttle, Ryan" },
+        { id: "Buyer 2", name: "Baxley, Ryan" },
+        { id: "Buyer 3", name: "Maxwell, Alexander" },
+        { id: "Buyer 4", name: "Baker, Benjamin" }
+    ];
+
+    const approverSelect = document.getElementById('Approver');
+    approverSelect.innerHTML = ''; // Clear existing options
+    const placeholderOption = new Option("Select an Approver", "", false, false);
+    approverSelect.appendChild(placeholderOption);
+
+    approvers.forEach(approver => {
+        const option = new Option(approver.name, approver.id, false, false);
+        approverSelect.appendChild(option);
+    });
+}
+
+document.getElementById('Project').addEventListener('change', populateApprovers);
+</script>
+
 <!-- JavaScript Files -->
 <script src="../public/js/purchaseOrderTables.js"></script>
 <script src="../public/js/allTableFunctions.js"></script>
-<script src="../public/js/poAttachHandler.js"></script>
-
-
 
 </body>
 </html>

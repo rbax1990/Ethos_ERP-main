@@ -42,9 +42,14 @@ function createPurchaseOrder() {
             details: row.cells[6] && row.cells[6].innerText.trim() !== '' ? row.cells[6].innerText : null,
             pn: row.cells[7] && row.cells[7].innerText.trim() !== '' ? row.cells[7].innerText : null,
             callout: row.cells[8] && row.cells[8].innerText.trim() !== '' ? row.cells[8].innerText : null,
-            price: row.cells[9] && row.cells[9].innerText.trim() !== '' ? row.cells[9].innerText : null,
-            labor_rate: row.cells[10] && row.cells[10].innerText.trim() !== '' ? row.cells[10].innerText : null,
+            quantity: row.cells[9].querySelector('.quantity-input')?.value || null,
+            price: row.cells[10].querySelector('.price-input')?.value || null,
+            ext_price: row.cells[11].querySelector('.ext-price-input')?.value || null,
+            labor_rate: row.cells[12] && row.cells[12].innerText.trim() !== '' ? row.cells[12].innerText : null,
+            ext_labor: row.cells[13].querySelector('.ext-labor-input')?.value || null,
+
         };
+
         selectedItems.push(item);
     }
 
@@ -61,6 +66,8 @@ function createPurchaseOrder() {
         items: selectedItems
     };
   
+    console.log(postData)
+
     // Make AJAX call to server-side script
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/ETHOS_ERP-MAIN/createPurchaseOrder.php', true);

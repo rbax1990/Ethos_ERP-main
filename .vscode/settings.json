@@ -9,7 +9,7 @@
             "server": "localhost",
             "port": 3306,
             "driver": "MySQL",
-            "name": "Ethos",
+            "name": "Ehtos Database",
             "database": "ethos_database",
             "username": "root",
             "password": ""

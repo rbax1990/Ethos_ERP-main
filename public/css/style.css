@@ -86,8 +86,15 @@
     .scrollable-table {
         overflow: auto;
         max-height: 300px;
-        border: 1px solid black;
-        border-radius: 8px;
+        border: 2px solid rgb(46, 45, 45);
+        border-radius: 5px;
+    }
+
+    .scrollable-table2 {
+      overflow: auto;
+      max-height: 600px;
+      border: 2px solid rgb(46, 45, 45);
+      border-radius: 5px;
     }
     
     table {
@@ -107,11 +114,13 @@
     }     
     
     .selected-row {
-      background-color: #e8e8e8; /* Subtle highlight color */
+      background-color: #aeadad; /* Subtle highlight color */
     }
-    
-        /* PROJECTS PAGE */
-    
+
+    .hide-row {
+      display: none; /* Hide the row */
+  }
+        
         /*PURCHSING PAGE */
     .form-group {
         display: flex;
@@ -187,6 +196,15 @@
       padding: 30px;
     }
 
+    .project-filter-box {
+      width: 200px;
+      border-right: 1px solid #ccc;
+      border-left: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      border-top: 1px solid #ccc;
+      padding: 30px;
+    }
+
     .po-filter-box .form-group input[type="text"],
     .po-filter-box .form-group input[type="number"],
     .po-filter-box .form-group select {
@@ -241,7 +259,7 @@
       z-index: 500; /* Sit on top */
       left: 0;
       top: 0;
-      width: 100%; /* Full width */
+      width: 50%; /* Full width */
       height: 100%; /* Full height */
       overflow: auto; /* Enable scroll if needed */
       background-color: rgb(0,0,0); /* Fallback color */
@@ -252,7 +270,7 @@
       background-color: #fff; /* White background for content */
       margin: 15% auto; /* Centering the modal */
       padding: 20px;
-      border: 1px solid #888; /* Visible border */
+      border: 1.5px solid #888; /* Visible border */
       width: 50%; /* Adjust to your preference */
       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); /* Shadow for 3D effect */
     }
@@ -309,3 +327,73 @@
     .cancel-button:hover {
       opacity: 0.8;
     }
+
+
+    .filter-dialog {
+      position: absolute;
+      background: white;
+      border: 1px solid #ccc;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,.2);
+      z-index: 100;
+  }
+  .dropdown-arrow {
+      cursor: pointer;
+  }
+
+
+.edit-callout,
+.edit-price,
+.edit-labor-rate {
+    width: 100%; /* Makes the input take up the full width of the table cell */
+    box-sizing: border-box; /* Ensures that padding and border are included in the width */
+    padding: 4px; /* Adds some padding inside the inputs */
+    margin: 0; /* Resets any default margin */
+}
+
+
+#navbar {
+  position: relative;
+}
+
+.company-logo {
+  position: absolute;
+  top: 10; /* Align to the top of the navbar container */
+  right: 0; /* Align to the right of the navbar container */
+  padding: 15px; /* Add some space around the logo */
+}
+
+.company-logo img {
+  height: 60px; /* Adjust the size of your logo */
+  width: auto; /* Keep the aspect ratio of your logo */
+}
+
+#submit-button {
+  background-color: #b90f16; /* This is Bootstrap's btn-danger color, you should adjust it to match the exact color you need */
+  border-color: #d43f3a; /* This is Bootstrap's btn-danger border color, you should adjust it to match the exact color you need */
+  color: white;
+  padding: 10px 16px;
+  font-size: 14px;
+  line-height: 1.33;
+  border-radius: 4px; /* Adjust if your buttons have a different border-radius */
+  box-shadow: none; /* Assuming there is no shadow, you can remove this if there is */
+  border: 1px solid transparent;
+  margin-right: 8px; /* Add some space between buttons if necessary */
+  cursor: pointer;
+  /* Add hover and active states */
+}
+
+#submit-button:hover,
+#submit-button:focus,
+#submit-button:active {
+  background-color: #c9302c; /* Darker shade for hover/active, adjust as necessary */
+  border-color: #ac2925; /* Darker border for hover/active, adjust as necessary */
+}
+
+/* Focus state when the button is focused with tab key */
+#submit-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(217, 83, 79, 0.5); /* A light glow effect, adjust color and size as needed */
+}
+
+/* Add styles for other buttons if necessary */

@@ -51,7 +51,7 @@ try {
     $poId = $pdo->lastInsertId();
 
 // Insert into po_items
-$itemsSql = "INSERT INTO po_items (po_number, material_spec, brand, size_1, size_2, size_3, description, details, pn, callout, price, labor_rate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$itemsSql = "INSERT INTO po_items (po_number, material_spec, brand, size_1, size_2, size_3, description, details, pn, callout, quantity, price, ext_price, labor_rate, ext_labor) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $itemsStmt = $pdo->prepare($itemsSql);
 
 error_log("Generated PO Number: " . $poNumber);
@@ -69,8 +69,12 @@ foreach ($postData['items'] as $item) {
         $item['details'] ?? null,
         $item['pn'] ?? null,
         $item['callout'] ?? null,
+        $item['quantity'] ?? null,
         $item['price'] ?? null,
+        $item['ext_price'] ?? null,
         $item['labor_rate'] ?? null,
+        $item['ext_labor'] ?? null,
+
     ]);
 }
 

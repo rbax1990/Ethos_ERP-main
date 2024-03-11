@@ -1,9 +1,9 @@
 <?php
 $host = '127.0.0.1';  // Your MySQL host, 127.0.0.1 is the localhost
-$port = '3306';       // Your MySQL port, 3307 as per your configuration
+$port = '3306';       // Your MySQL port
 $db   = 'ethos_database'; // Your database name
 $user = 'root';      // Your database username
-$pass = '';      // Your database password
+$pass = '';      // Your database password, assuming no password for localhost
 $charset = 'utf8mb4';         // Set the charset
 
 $options = [
@@ -18,4 +18,4 @@ try {
 } catch (\PDOException $e) {
      throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
-
+?>

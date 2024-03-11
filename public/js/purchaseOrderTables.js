@@ -1,3 +1,4 @@
+//PURCHASE ORDER TABLES ONLY
 document.addEventListener('DOMContentLoaded', function() {
     // Attach event listener to each row in the purchaseOrdersTable
     document.querySelectorAll('#purchaseOrdersTable tbody tr').forEach(row => {
@@ -31,11 +32,35 @@ function populateWorkspaceTable(items) {
 
     items.forEach(item => {
         const row = workspaceTableBody.insertRow();
-        // Populate the row with PO item details
-        // The following assumes your items have properties that match your table headers
-        Object.values(item).forEach(text => {
+
+        // Add cells for each property in the item
+        Object.values(item).forEach((text, index) => {
             const cell = row.insertCell();
             cell.textContent = text;
+            
+            // Adjust these index values to match WORKSPACE TABLE
+            if (index === 10) {
+                cell.innerHTML = '';
+                const quantityInput = document.createElement('input');
+                quantityInput.type = 'number';
+                quantityInput.className = 'quantity-input';
+                quantityInput.value = item.quantity || 0;
+                quantityInput.style.width = '100%';
+                cell.appendChild(quantityInput);
+            }
+
+            if (index === 11) {
+                cell.innerHTML = '';
+                const priceInput = document.createElement('input');
+                priceInput.type = 'number';
+                priceInput.className = 'price-input';
+                priceInput.value = item.price || 0;
+                priceInput.style.width = '100%';
+                cell.appendChild(priceInput);
+            }
+            
+            // Remove or adjust these if you no longer have 'Ext. Price' and 'Ext. Labor' inputs
+            // ... (other column adjustments if needed)
         });
     });
 }
